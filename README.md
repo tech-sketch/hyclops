@@ -29,7 +29,7 @@ HyClops provides following features:
 
 # Architecture {#architecture}
 
-![architecture](http://tech-sketch.github.io/HyClops/assets/images/HyClops_architecture.png)
+![architecture](http://tech-sketch.github.io/hyclops/assets/images/HyClops_architecture.png)
 
 HyClops is constructed by three components.
 
@@ -339,7 +339,7 @@ These templates include process monitoring item & log monitoring item.
 Visit Zabbix dashboard.
 Added some areas in dashboard (vSphere status, Amazon Web Services status,Pysical Machine status).
 
-![dashboard](http://tech-sketch.github.io/HyClops/assets/images/HyClops_dashboard.png)
+![dashboard](http://tech-sketch.github.io/hyclops/assets/images/HyClops_dashboard.png)
 
 This area shows some information for each environments.
 For example, in case of AWS, instance number are displayed for each state(Powered on/Powered off).
@@ -358,9 +358,9 @@ If you want to control instances, you can execute in Zabbix dashboard.
 
 At Zabbix dashboard, you can select vSphere VM or Amazon EC2 instance(Powered on status).
 
-![ssh_connect](http://tech-sketch.github.io/HyClops/assets/images/ssh_connect.png)
+![ssh_connect](http://tech-sketch.github.io/hyclops/assets/images/ssh_connect.png)
 
-![gateone](http://tech-sketch.github.io/HyClops/assets/images/gateone.png)
+![gateone](http://tech-sketch.github.io/hyclops/assets/images/gateone.png)
 
 # Contact {#contact}
 
