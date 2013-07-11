@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="author" content="{{ site.author.name }}" />
+    <title>{{ page.title }}</title>
+
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/styles.css">
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/pygment_trac.css">
+    <link rel="shortcut icon" href="images/hyclops_official_logo.png">
+    <script src="{{ ASSET_PATH }}/js/scale.fix.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="{{ ASSET_PATH }}/js/menu.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    {% include JB/analytics %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+      <a href="https://github.com/tech-sketch"><img style="position: absolute; top: 0; left: 0; border: 0;padding: 0px; margin: 0px" src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+      <h1 class="header"><a href="{{ HOME_PATH }}"><img src="{{ site.production_url }}/assets/images/hyclops_official_logo.png" width=150 height=150 style=border:0px;margin:0px></a></h1>
+        <p class="header">{{ site.tagline }}</p>
+        <ul>
+          {% assign pages_list = site.pages %}
+          {% assign group = 'navigation' %}
+          {% include JB/pages_list %}
+        </ul>
+        {% if site.ads.google %}
+        <div class="misc ad">
+          <script type="text/javascript"><!--
+            google_ad_client = "{{ site.ads.google.client }}";
+            google_ad_slot = "{{ site.ads.google.slot }}";
+            google_ad_width = {{ site.ads.google.width }};
+            google_ad_height = {{ site.ads.google.height }};
+            //-->
+          </script>
+          <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+        </div>
+        {% endif %}
+        {% if site.author %}
+        <div class="misc vcard">
+          <h4>about</h4>
+          <ul>
+            {% if site.author.email %}
+            <li class="contact"><address><span class="author fn n">{{ site.author.name }}</span> - <span class="fn email">{{ site.author.email }}</span></address></li>
+            {% endif %}
+            {% if site.author.github %}
+            <li class="github"><a href="http://github.com/{{ site.author.github }}/" rel="me">github.com/{{ site.author.github }}</a></li>
+            {% endif %}
+            {% if site.author.twitter %}
+            <li class="twitter"><a href="http://twitter.com/{{ site.author.twitter }}/" rel="me">twitter.com/{{ site.author.twitter }}</a></li>
+            {% endif %}
+            {% if site.author.facebook %}
+            <li class="facebook"><a href="http://facebook.com/{{ site.author.facebook }}/" rel="me">facebook.com/{{ site.author.facebook }}</a></li>
+            {% endif %}
+            {% if site.author.flickr %}
+            <li class="flickr"><a href="http://flickr.com/{{ site.author.flickr }}/" rel="me">flickr.com/{{ site.author.flickr }}</a></li>
+            {% endif %}
+            {% if site.author.yelp %}
+            <li class="yelp"><a href="http://{{ site.author.yelp }}.yelp.com/" rel="me">{{ site.author.yelp }}.yelp.com</a></li>
+            {% endif %}
+            {% if site.author.pinterest %}
+            <li class="pinterest"><a href="http://pinterest.com/{{ site.author.pinterest }}" rel="me">pinterest.com/{{ site.author.pinterest }}</a></li>
+            {% endif %}
+          </ul>
+        </div><!-- misc -->
+        {% endif %}
+      </header>
+
+      <section>
+      {{ content }}
+      </section>
+
+      <footer>
+      <p><small>Hosted on <a href="http://pages.github.com/">GitHub Pages</a> with <a href="https://github.com/sodabrew/theme-dinky">Dinky theme</a> for <a href="http://jekyllbootstrap.com/">Jekyll Bootstrap</a>/HyClops Logo created by <a href="http://www.blugraphic.com/">blugraphic</a></small></p>
+      <ul class=responsive_menu>
+          <li><span class=menu_icon>menu</span>
+            <ul class=menu_list>
+            {% assign pages_list = site.pages %}
+            {% assign group = 'navigation' %}
+            {% include custom/footer_pages_list %}
+            </ul>
+          </li>
+      </ul>
+      </footer>
+      <footer class=tis_footer>
+      <span class=list>- </span><span class=partition> | </span><a href=http://www.tis.co.jp/termsofuse/index.html>About this site</a>  <br>
+      <span class=list>- </span><span class=partition> | </span><a href=http://www.tis.com/securitypolicy/index.html>Group Information Security Policy</a>  <br>
+      <span class=partition> | </span><span class=copyright>Copyright 2013 TIS Inc.</span><span class=partition> | </span>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>

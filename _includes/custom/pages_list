@@ -1,0 +1,8 @@
+{% for node in site.navbar_list %}
+<li><a href="{{ BASE_PATH }}{{node.link}}">{{ node.name }}</a></li>
+{% endfor %}
+
+<a href={{ site.production_url }}><img src={{ site.production_url }}/assets/images/flag_united_kingdom.png width=30 height=30 title=English style="border:0px;margin:0px"></a>
+<a href={{ site.production_url }}/jp><img src={{ site.production_url }}/assets/images/flag_japan.png width=30 height=30 title=Japanese style="border:0px;margin:0px"></a>
+<br><a href=http://www.tis.co.jp><img src={{ site.production_url }}/assets/images/TIS_logo-trans.png width=66 height=27 title=TIS style="border:0px;margin:0px"></a>
+
