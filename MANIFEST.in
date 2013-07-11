@@ -1,0 +1,10 @@
+include README.md
+include run.py
+include hyclops.conf
+include misc/init.d/*/*
+include misc/import_data/*
+include misc/externalscripts/*
+include misc/globalscripts/*
+include misc/cron_scripts/*
+include misc/zabbix-custom/*
+include misc/zabbix-custom/*/*

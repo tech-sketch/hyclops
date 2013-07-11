@@ -1,0 +1,75 @@
+#!/bin/sh
+#
+# chkconfig: - 90 10
+# description: Zabbix extention daemon
+# config: /opt/hyclops/hyclops.conf
+# pidfile: /tmp/hyclops.pid
+#
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+prog=hyclops
+exec=/opt/$prog/run.py
+conf=/opt/$prog/$prog.conf
+lockfile=/var/lock/subsys/$prog
+pidfile=/var/run/$prog/$prog.pid
+user=hyclops
+
+start()
+{
+    if status -p $pidfile ${0##*/} > /dev/null ; then
+        echo "Service ${0##*/} is already running"
+        return 0
+    else
+        echo -n $"Starting $prog: "
+        daemon --user $user --pidfile $pidfile "$exec -c $conf --pid $pidfile > /dev/null 2>&1"
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch $lockfile
+        return $RETVAL
+    fi
+}
+
+stop()
+{
+    echo -n $"Shutting down $prog: "
+    killproc -p $pidfile
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile $pidfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status -p $pidfile ${0##*/}
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    force-reload)
+        restart
+        ;;
+    try-restart|condrestart)
+        if status -p $pidfile ${0##*/} >/dev/null ; then
+            restart
+        fi
+        ;;
+    reload)
+        action $"Service ${0##*/} does not support the reload action: " /bin/false
+        exit 3
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|try-restart|force-reload}"
+        exit 2
+        ;;
+esac
+exit $?

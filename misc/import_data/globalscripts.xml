@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>2.0</version>
+    <date>2013-04-30T08:35:59Z</date>
+    <scripts>
+        <script>
+            <name>Start EC2 instance</name>
+            <command>/opt/hyclops/globalscripts/request_action.py ec2 {HOST.HOST} '{"command": "start"}' 2>&amp;1</command>
+            <host_access>3</host_access>
+            <usergroups>
+            </usergroups>
+            <groups>
+                <group>
+                    <name>AmazonEC2</name>
+                </group>
+            </groups>
+            <description></description>
+            <confirmation></confirmation>
+            <type>0</type>
+            <execute_on>1</execute_on>
+        </script>
+        <script>
+            <name>Stop EC2 instance</name>
+            <command>/opt/hyclops/globalscripts/request_action.py ec2 {HOST.HOST} '{"command": "stop"}' 2>&amp;1</command>
+            <host_access>3</host_access>
+            <usergroups>
+            </usergroups>
+            <groups>
+                <group>
+                    <name>AmazonEC2</name>
+                </group>
+            </groups>
+            <description></description>
+            <confirmation></confirmation>
+            <type>0</type>
+            <execute_on>1</execute_on>
+        </script>
+        <script>
+            <name>Reboot EC2 instance</name>
+            <command>/opt/hyclops/globalscripts/request_action.py ec2 {HOST.HOST} '{"command": "reboot"}' 2>&amp;1</command>
+            <host_access>3</host_access>
+            <usergroups>
+            </usergroups>
+            <groups>
+                <group>
+                    <name>AmazonEC2</name>
+                </group>
+            </groups>
+            <description></description>
+            <confirmation></confirmation>
+            <type>0</type>
+            <execute_on>1</execute_on>
+        </script>
+        <script>
+            <name>Start vSphere instance</name>
+            <command>/opt/hyclops/globalscripts/request_action.py vsphere {HOST.HOST} '{"command": "start"}' 2>&amp;1</command>
+            <host_access>3</host_access>
+            <usergroups>
+            </usergroups>
+            <groups>
+                <group>
+                    <name>vSphereVM</name>
+                </group>
+            </groups>
+            <description></description>
+            <confirmation></confirmation>
+            <type>0</type>
+            <execute_on>1</execute_on>
+        </script>
+        <script>
+            <name>Stop vSphere instance</name>
+            <command>/opt/hyclops/globalscripts/request_action.py vsphere {HOST.HOST} '{"command": "stop"}' 2>&amp;1</command>
+            <host_access>3</host_access>
+            <usergroups>
+            </usergroups>
+            <groups>
+                <group>
+                    <name>vSphereVM</name>
+                </group>
+            </groups>
+            <description></description>
+            <confirmation></confirmation>
+            <type>0</type>
+            <execute_on>1</execute_on>
+        </script>
+        <script>
+            <name>Suspend vSphere instance</name>
+            <command>/opt/hyclops/globalscripts/request_action.py vsphere {HOST.HOST} '{"command": "suspend"}' 2>&amp;1</command>
+            <host_access>3</host_access>
+            <usergroups>
+            </usergroups>
+            <groups>
+                <group>
+                    <name>vSphereVM</name>
+                </group>
+            </groups>
+            <description></description>
+            <confirmation></confirmation>
+            <type>0</type>
+            <execute_on>1</execute_on>
+        </script>
+        <script>
+            <name>Reboot vSphere instance</name>
+            <command>/opt/hyclops/globalscripts/request_action.py vsphere {HOST.HOST} '{"command": "reboot"}' 2>&amp;1</command>
+            <host_access>3</host_access>
+            <usergroups>
+            </usergroups>
+            <groups>
+                <group>
+                    <name>vSphereVM</name>
+                </group>
+            </groups>
+            <description></description>
+            <confirmation></confirmation>
+            <type>0</type>
+            <execute_on>1</execute_on>
+        </script>
+        <script>
+            <name>IPMI power on</name>
+            <command>power on</command>
+            <host_access>3</host_access>
+            <usergroups>
+            </usergroups>
+            <groups>
+                <group>
+                    <name>IPMI</name>
+                </group>
+            </groups>
+            <description></description>
+            <confirmation></confirmation>
+            <type>1</type>
+            <execute_on>1</execute_on>
+        </script>
+        <script>
+            <name>IPMI power off</name>
+            <command>power off</command>
+            <host_access>3</host_access>
+            <usergroups>
+            </usergroups>
+            <groups>
+                <group>
+                    <name>IPMI</name>
+                </group>
+            </groups>
+            <description></description>
+            <confirmation>Do you execute power off command?</confirmation>
+            <type>1</type>
+            <execute_on>1</execute_on>
+        </script>
+    </scripts>
+</zabbix_export>
+

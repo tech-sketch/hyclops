@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>2.0</version>
+    <date>2013-04-30T08:35:59Z</date>
+    <macros>
+        <macro>
+            <macro>{$GATEONE_URL}</macro>
+            <value>GateOne URL</value>
+        </macro>
+        <macro>
+            <macro>{$GATEONE_KEY}</macro>
+            <value>GateOne API Key</value>
+        </macro>
+        <macro>
+            <macro>{$GATEONE_SECRET}</macro>
+            <value>GateOne Secret Key</value>
+        </macro>
+        <macro>
+            <macro>{$HYCLOPS_SERVER}</macro>
+            <value>127.0.0.1</value>
+        </macro>
+        <macro>
+            <macro>{$HYCLOPS_PORT}</macro>
+            <value>5555</value>
+        </macro>
+    </macros>
+</zabbix_export>
+
