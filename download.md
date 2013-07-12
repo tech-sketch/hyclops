@@ -9,3 +9,7 @@ group: navigation
 ## Source code
 
 [Download from GitHub releases page](https://github.com/tech-sketch/hyclops/releases)
+
+## Chef repository for HyClops installation
+
+[hyclops-chef-repo](https://github.com/tech-sketch/hyclops-chef-repo)
