@@ -509,11 +509,13 @@ footer.tis_footer span.partition {
         position: fixed;
         display: inline-block;
         bottom: 0;
+        left: 0;
         z-index: 2;
         width: 20%;
         margin: 0px;
         float: right;
         text-align: center;
+        line-height: 35px;
     }
     ul.responsive_menu:hover > ul.menu_list{
         visibility: visible;
@@ -521,13 +523,14 @@ footer.tis_footer span.partition {
     ul.menu_list {
         display: none;
         position: absolute;
-        bottom: 21px;
+        bottom: 36px;
         margin: 0px;
         width: 200px;
     }
     ul.menu_list li {
         width: 100%;
         right: 100px;
+        left: 0;
         position: relative;
         font-size: 150%;
     }
