@@ -1,16 +1,16 @@
 # HyClops for Zabbix
 # Copyright 2013 TIS Inc.
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
@@ -143,9 +143,9 @@ class VSphereTests(unittest.TestCase):
             "datastore": [
                 MockDatastore({
                     "name": "datastore name",
-                    "summary": Mock(**{"freeSpace": 400 * 1024**3,
-                                        "capacity": 800 * 1024**3,
-                                        "type": "nfs"})
+                    "summary": Mock(**{"freeSpace": 400 * 1024 ** 3,
+                                    "capacity": 800 * 1024 ** 3,
+                                    "type": "nfs"})
                 })
             ],
             "summary": Mock(**{
@@ -156,8 +156,8 @@ class VSphereTests(unittest.TestCase):
                 'quickStats.overallMemoryUsage': 1000}),
             "hardware": Mock(**{
                 'cpuInfo.numCpuThreads': 16,
-                'memorySize': 16 * 1024**3}),
-            "vm": [vm1, vm2, vm3] # not include vm4
+                'memorySize': 16 * 1024 ** 3}),
+            "vm": [vm1, vm2, vm3]  # not include vm4
         })
         MockHostSystem.add_mock_host(self.host)
         self.node = Node(
@@ -172,8 +172,8 @@ class VSphereTests(unittest.TestCase):
                 'status': 'running',
                 'cpu': 1,
                 'cpu_usage': 5.0,
-                'memory': 2048 * 1024**2,
-                'memory_usage': 300 * 1024**2,
+                'memory': 2048 * 1024 ** 2,
+                'memory_usage': 300 * 1024 ** 2,
                 'toolsRunningStatus': 'guestToolsRunning',
                 'toolsVersionStatus': 'toolsVersionCurrent',
                 'vmpath': '[datastore1] /foo/bar.vmx',
@@ -184,10 +184,6 @@ class VSphereTests(unittest.TestCase):
                 'platform': "CentOS 4/5/6 (64bit)",
             }
         )
-
-    def tearDown(self):
-        for patcher in self.patchers:
-            patcher.stop()
 
     def test_to_node(self):
         # pattern 1
@@ -219,10 +215,10 @@ class VSphereTests(unittest.TestCase):
             'cpu': 16,
             'cpu_assigned': 1 * len(self.host.vm),
             'cpu_usage': 1.875,
-            'memory': 16 * 1024**3,
-            'memory_assigned': 2 * 1024**3 * len(self.host.vm),
-            'memory_usage': 1000 * 1024**2,
-            'datastores': [{'name': 'datastore name', 'freeSpace': 400 * 1024**3, 'capacity': 800 * 1024**3, 'type': 'nfs'}]
+            'memory': 16 * 1024 ** 3,
+            'memory_assigned': 2 * 1024 ** 3 * len(self.host.vm),
+            'memory_usage': 1000 * 1024 ** 2,
+            'datastores': [{'name': 'datastore name', 'freeSpace': 400 * 1024 ** 3, 'capacity': 800 * 1024 ** 3, 'type': 'nfs'}]
         }
         hardware_profile = self.driver._to_hardware_profile(self.host)
         self.assertDictEqual(expect, hardware_profile)

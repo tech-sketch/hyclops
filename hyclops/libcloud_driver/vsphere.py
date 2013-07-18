@@ -1,23 +1,22 @@
 # HyClops for Zabbix
 # Copyright 2013 TIS Inc.
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-from libcloud.compute.providers import Provider
 from libcloud.compute.types import NodeState
-from libcloud.compute.base import Node, NodeDriver, NodeLocation
+from libcloud.compute.base import Node, NodeDriver
 from psphere.client import Client
 from psphere.managedobjects import HostSystem
 
@@ -56,7 +55,7 @@ class VSphereNodeDriver(NodeDriver):
             public_ips.append(vm.guest.ipAddress)
         quickStats = vm.summary.quickStats
         cpu_usage = quickStats.overallCpuUsage if hasattr(quickStats, "overallCpuUsage") else 0
-        memory_usage = quickStats.guestMemoryUsage * 1024**2 if hasattr(quickStats, "guestMemoryUsage") else 0
+        memory_usage = quickStats.guestMemoryUsage * 1024 ** 2 if hasattr(quickStats, "guestMemoryUsage") else 0
         if hasattr(vm.runtime, "question"):
             stuck_state = 1
             question_id = vm.runtime.question.id
@@ -84,7 +83,7 @@ class VSphereNodeDriver(NodeDriver):
                 'managedObjectReference': vm,
                 'status': self.NODE_STATUS_MAP[vm.runtime.powerState],
                 'cpu': vm.summary.config.numCpu,
-                'memory': vm.summary.config.memorySizeMB * 1024**2,
+                'memory': vm.summary.config.memorySizeMB * 1024 ** 2,
                 'toolsRunningStatus': str(vm.guest.toolsRunningStatus),
                 'toolsVersionStatus': str(vm.guest.toolsVersionStatus),
                 'cpu_usage': 100 * float(cpu_usage) / vm.summary.runtime.maxCpuUsage,
@@ -115,8 +114,8 @@ class VSphereNodeDriver(NodeDriver):
             'cpu_usage': 100 * float(host.summary.quickStats.overallCpuUsage) / (host.summary.hardware.cpuMhz * host.summary.hardware.numCpuCores),
             'cpu_assigned': sum([vm.summary.config.numCpu for vm in host.vm if vm.runtime.powerState == "poweredOn"]),
             'memory': host.hardware.memorySize,
-            'memory_usage': host.summary.quickStats.overallMemoryUsage * 1024**2,
-            'memory_assigned': sum([vm.summary.config.memorySizeMB * 1024**2 for vm in host.vm if vm.runtime.powerState == "poweredOn"]),
+            'memory_usage': host.summary.quickStats.overallMemoryUsage * 1024 ** 2,
+            'memory_assigned': sum([vm.summary.config.memorySizeMB * 1024 ** 2 for vm in host.vm if vm.runtime.powerState == "poweredOn"]),
             'datastores': datastores,
         }
         return hardware_profile

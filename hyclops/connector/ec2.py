@@ -1,22 +1,20 @@
 # HyClops for Zabbix
 # Copyright 2013 TIS Inc.
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-import os
-import sys
 import logging
 import traceback
 from libcloud.compute.types import Provider, NodeState
@@ -50,7 +48,7 @@ class EC2Connector(BaseConnector):
                 self.logger.debug("success. thread finished.")
             else:
                 self.logger.warning("failed. thread finished.")
-        except Exception, e:
+        except Exception:
             if traceback:
                 self.logger.error(traceback.format_exc())
 
@@ -153,9 +151,9 @@ class EC2Connector(BaseConnector):
                 self.zabbix_sender(hostname, "instance.ami_name", node.extra["ami_name"])
 
         # move to "Not exist hosts" group old zabbix hosts
-        not_existed_groupid = self.zabbix_api.hostgroup.get({"filter":{"name":"Not exist hosts"}})[0]
+        not_existed_groupid = self.zabbix_api.hostgroup.get({"filter": {"name": "Not exist hosts"}})[0]
         for hostid in zbx_unchecked_hostids:
-            target_host = self.zabbix_api.host.get({"output":["host","name"],"hostids":[hostid]})[0]
+            target_host = self.zabbix_api.host.get({"output": ["host", "name"], "hostids": [hostid]})[0]
             self.logger.debug("Move to 'Not exist hosts' group %s" % hostid)
             self.zabbix_api.host.update({
                 "hostid": hostid,
@@ -180,10 +178,10 @@ class EC2Connector(BaseConnector):
 
     def create_zabbix_host(self, owner_hostname, hostname, node):
         visible_name = owner_hostname + "_" + node.name
-        if len(visible_name) < (64-len("_"+node.id)):
+        if len(visible_name) < (64 - len("_" + node.id)):
             visible_name += "_" + node.id
         else:
-            visible_name = visible_name[0:64-len(".._"+node.id)] + ".._" + node.id
+            visible_name = visible_name[0:64 - len(".._" + node.id)] + ".._" + node.id
         templateids = self.get_template_ids(owner_hostname)
         # create host
         response = None
@@ -223,10 +221,10 @@ class EC2Connector(BaseConnector):
     def update_zabbix_host(self, owner_hostname, hostname, node, host):
         region = node.extra["availability"][:-1]
         visible_name = owner_hostname + "_" + node.name
-        if len(visible_name) < (64-len("_"+node.id)):
+        if len(visible_name) < (64 - len("_" + node.id)):
             visible_name += "_" + node.id
         else:
-            visible_name = visible_name[0:64-len(".._"+node.id)] + ".._" + node.id
+            visible_name = visible_name[0:64 - len(".._" + node.id)] + ".._" + node.id
         try:
             if node.state == NodeState.RUNNING:
                 for type in [1, 2]:

@@ -31,10 +31,10 @@ class ReplaceCommand(Command):
             return
         if not os.path.exists(os.path.join(self.frontend_dir, "custom")):
             os.makedirs(os.path.join(self.frontend_dir, "custom"))
-        if self.zabbix_version not in ['2.0','2.2']:
+        if self.zabbix_version not in ['2.0', '2.2']:
             print "Not supported version (Supported only 2.0 or 2.2)"
             return
-        from_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "misc/zabbix-custom/%s/" % self.zabbix_version )
+        from_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "misc/zabbix-custom/%s/" % self.zabbix_version)
         for searchpath, dirs, files in os.walk(from_dir):
             for file in files:
                 basename = os.path.join(searchpath, file).replace(from_dir, '')
@@ -74,10 +74,10 @@ class RollbackCommand(Command):
         if not os.path.exists(self.frontend_dir):
             print "Target directory does not exist"
             return
-        if self.zabbix_version not in ['2.0','2.2']:
+        if self.zabbix_version not in ['2.0', '2.2']:
             print "Not supported version (Supported only 2.0 or 2.2)"
             return
-        from_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "misc/zabbix-custom/%s/" % self.zabbix_version )
+        from_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "misc/zabbix-custom/%s/" % self.zabbix_version)
         for searchpath, dirs, files in os.walk(from_dir):
             for file in files:
                 basename = os.path.join(searchpath, file).replace(from_dir, '')
@@ -229,8 +229,7 @@ setup(name='hyclops',
 if os.system('/usr/bin/id hyclops') != 0:
     nologin_path = commands.getoutput('/usr/bin/which nologin')
     print nologin_path
-    os.system('/usr/sbin/useradd hyclops -s '+nologin_path)
+    os.system('/usr/sbin/useradd hyclops -s ' + nologin_path)
 # change owner /opt/hyclops & /var/run/hyclops
 os.system('chown hyclops:hyclops -R /opt/hyclops/')
 os.system('chown hyclops:hyclops /var/run/hyclops/')
-

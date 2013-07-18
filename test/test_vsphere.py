@@ -1,27 +1,26 @@
 # HyClops for Zabbix
 # Copyright 2013 TIS Inc.
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
 import os
-import sys
 import unittest
 import logging
-import configobj
 import hashlib
+import configobj
 from mock import patch, Mock, MagicMock
 from zabbix_api import ZabbixAPIException
 from hyclops.connector.vsphere import VSphereConnector
@@ -67,8 +66,8 @@ class TestVSphereConnector(unittest.TestCase):
                 "status": "running",
                 "cpu": 1,
                 "cpu_usage": 12.34,
-                "memory": 2 * 1024**3,
-                "memory_usage": 600 * 1024**2,
+                "memory": 2 * 1024 ** 3,
+                "memory_usage": 600 * 1024 ** 2,
                 "toolsRunningStatus": "guestToolsRunning",
                 "toolsVersionStatus": "guestToolsCurrent",
                 "stuck_state": False,
@@ -92,8 +91,8 @@ class TestVSphereConnector(unittest.TestCase):
                 "status": "running",
                 "cpu": 1,
                 "cpu_usage": 12.34,
-                "memory": 2 * 1024**3,
-                "memory_usage": 600 * 1024**2,
+                "memory": 2 * 1024 ** 3,
+                "memory_usage": 600 * 1024 ** 2,
                 "toolsRunningStatus": "guestToolsRunning",
                 "toolsVersionStatus": "guestToolsCurrent",
                 "stuck_state": False,
@@ -117,8 +116,8 @@ class TestVSphereConnector(unittest.TestCase):
                 "status": "running",
                 "cpu": 1,
                 "cpu_usage": 12.34,
-                "memory": 2 * 1024**3,
-                "memory_usage": 600 * 1024**2,
+                "memory": 2 * 1024 ** 3,
+                "memory_usage": 600 * 1024 ** 2,
                 "toolsRunningStatus": "guestToolsRunning",
                 "toolsVersionStatus": "guestToolsCurrent",
                 "stuck_state": False,
@@ -142,8 +141,8 @@ class TestVSphereConnector(unittest.TestCase):
                 "status": "running",
                 "cpu": 1,
                 "cpu_usage": 12.34,
-                "memory": 2 * 1024**3,
-                "memory_usage": 600 * 1024**2,
+                "memory": 2 * 1024 ** 3,
+                "memory_usage": 600 * 1024 ** 2,
                 "toolsRunningStatus": "guestToolsRunning",
                 "toolsVersionStatus": "guestToolsCurrent",
                 "stuck_state": False,
@@ -167,8 +166,8 @@ class TestVSphereConnector(unittest.TestCase):
                 "status": "running",
                 "cpu": 1,
                 "cpu_usage": 12.34,
-                "memory": 2 * 1024**3,
-                "memory_usage": 600 * 1024**2,
+                "memory": 2 * 1024 ** 3,
+                "memory_usage": 600 * 1024 ** 2,
                 "toolsRunningStatus": "guestToolsRunning",
                 "toolsVersionStatus": "guestToolsCurrent",
                 "stuck_state": False,
@@ -192,8 +191,8 @@ class TestVSphereConnector(unittest.TestCase):
                 "status": "running",
                 "cpu": 1,
                 "cpu_usage": 12.34,
-                "memory": 2 * 1024**3,
-                "memory_usage": 600 * 1024**2,
+                "memory": 2 * 1024 ** 3,
+                "memory_usage": 600 * 1024 ** 2,
                 "toolsRunningStatus": "guestToolsRunning",
                 "toolsVersionStatus": "guestToolsCurrent",
                 "stuck_state": False,
@@ -217,8 +216,8 @@ class TestVSphereConnector(unittest.TestCase):
                 "status": "running",
                 "cpu": 1,
                 "cpu_usage": 12.34,
-                "memory": 2 * 1024**3,
-                "memory_usage": 600 * 1024**2,
+                "memory": 2 * 1024 ** 3,
+                "memory_usage": 600 * 1024 ** 2,
                 "toolsRunningStatus": "guestToolsRunning",
                 "toolsVersionStatus": "guestToolsCurrent",
                 "stuck_state": False,
@@ -235,12 +234,12 @@ class TestVSphereConnector(unittest.TestCase):
             "cpu": 8,
             "cpu_usage": 12.34,
             "cpu_assigned": 4,
-            "memory": 16 * 1024**3,
-            "memory_usage": 8 * 1024**3,
-            "memory_assigned": 8 * 1024**3,
+            "memory": 16 * 1024 ** 3,
+            "memory_usage": 8 * 1024 ** 3,
+            "memory_assigned": 8 * 1024 ** 3,
             "datastores": [
-                {"name": "datastore1", "freeSpace": 600 * 1024**3,
-                 "capacity": 2 * 1024**4, "type": "nfs"}
+                {"name": "datastore1", "freeSpace": 600 * 1024 ** 3,
+                 "capacity": 2 * 1024 ** 4, "type": "nfs"}
             ]
         }
         MockVSphereNodeDriver.add_mock_hardware_profile(hardware_profile)
@@ -280,7 +279,6 @@ class TestVSphereConnector(unittest.TestCase):
             "host": "Template OS Linux",
             "groups": [],
         })
-        templateid_os_linux = response["templateids"][0]
         # create ESXi Host
         zabbix_api.host.create({
             "host": "ESXi",
@@ -336,7 +334,7 @@ class TestVSphereConnector(unittest.TestCase):
         })
         # create Duplicate(duplicate_uuid1) Host
         zabbix_api.host.create({
-            "host": hashlib.sha1("hardware_uuid"+"[datastore1] /dup/dup.vmx").hexdigest(),
+            "host": hashlib.sha1("hardware_uuid" + "[datastore1] /dup/dup.vmx").hexdigest(),
             "name": "ESXi_Duplicate",
             "interfaces": [
                 {"type": 1, "main": 1, "useip": 1, "ip": "127.0.0.1", "dns": "", "port": 10050},
@@ -355,7 +353,7 @@ class TestVSphereConnector(unittest.TestCase):
         })
         # create Duplicate3(duplicate_uuid2) Host
         zabbix_api.host.create({
-            "host": hashlib.sha1("hardware_uuid"+"[datastore1] /dup3/dup.vmx").hexdigest(),
+            "host": hashlib.sha1("hardware_uuid" + "[datastore1] /dup3/dup.vmx").hexdigest(),
             "name": "ESXi_Duplicate3",
             "interfaces": [
                 {"type": 1, "main": 1, "useip": 1, "ip": "127.0.0.1", "dns": "", "port": 10050},
@@ -522,11 +520,11 @@ class TestVSphereConnector(unittest.TestCase):
         zabbix_hostnames = [host["host"] for host in zabbix_hosts]
         self.assertTrue("vsphere_uuid" in zabbix_hostnames)
         self.assertTrue("duplicate_uuid1" in zabbix_hostnames)
-        self.assertTrue(hashlib.sha1("hardware_uuid"+"[datastore1] /dup2/dup.vmx").hexdigest() in zabbix_hostnames)
+        self.assertTrue(hashlib.sha1("hardware_uuid" + "[datastore1] /dup2/dup.vmx").hexdigest() in zabbix_hostnames)
         self.assertTrue("duplicate_uuid2" in zabbix_hostnames)
-        self.assertFalse(hashlib.sha1("hardware_uuid"+"[datastore1] /dup3/dup.vmx").hexdigest() in zabbix_hostnames)
+        self.assertFalse(hashlib.sha1("hardware_uuid" + "[datastore1] /dup3/dup.vmx").hexdigest() in zabbix_hostnames)
         self.assertTrue("duplicate_uuid3" in zabbix_hostnames)
-        self.assertTrue(hashlib.sha1("hardware_uuid"+"[datastore1] /dup5/dup.vmx").hexdigest() in zabbix_hostnames)
+        self.assertTrue(hashlib.sha1("hardware_uuid" + "[datastore1] /dup5/dup.vmx").hexdigest() in zabbix_hostnames)
         zabbix_hosts = self.connector.zabbix_api.host.get({})
         self.assertEqual(len([host for host in zabbix_hosts if host["host"] == "terminated_uuid"]), 0)
         self.connector.create_zabbix_host = Mock(return_value=False)

@@ -1,22 +1,21 @@
 # HyClops for Zabbix
 # Copyright 2013 TIS Inc.
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 import os
-import sys
 import unittest
 import logging
 import configobj
@@ -90,7 +89,7 @@ class TestEC2Connector(unittest.TestCase):
         MockEC2NodeDriver.add_mock_node(node)
         node = Node(**{
             "id": "i-bbbbbbbb",
-            "name": "a"*62,
+            "name": "a" * 62,
             "state": 0,
             "public_ips": [],
             "private_ips": [],
@@ -151,7 +150,6 @@ class TestEC2Connector(unittest.TestCase):
             "host": "Template OS Linux",
             "groups": [],
         })
-        templateid_os_linux = response["templateids"][0]
         # create AWS Host
         zabbix_api.host.create({
             "host": "AWS",
@@ -282,17 +280,17 @@ class TestEC2Connector(unittest.TestCase):
 
     def test_update_zabbix_host(self):
         node = self.driver.list_nodes(ex_node_ids=["i-aaaaaaaa"])[0]
-        node.name = "a"*62
+        node.name = "a" * 62
         host = self.connector.zabbix_api.host.get({"filter": {"host": "i-aaaaaaaa"}})[0]
         self.assertTrue(self.connector.update_zabbix_host(owner_hostname="AWS", hostname="i-aaaaaaaa", node=node, host=host))
-        self.assertEqual(host["name"], "AWS_" + "a"*(64-len("AWS_")-len(".._i-aaaaaaaa")) + ".._i-aaaaaaaa")
+        self.assertEqual(host["name"], "AWS_" + "a" * (64 - len("AWS_") - len(".._i-aaaaaaaa")) + ".._i-aaaaaaaa")
         host = self.connector.zabbix_api.host.get({"filter": {"host": "i-aaaaaaaa"}})[0]
-        self.assertEqual(len(host["interfaces"]), len(node.private_ips)*2+2)
+        self.assertEqual(len(host["interfaces"]), len(node.private_ips) * 2 + 2)
         node.public_ips = []
         node.private_ips = []
         self.assertTrue(self.connector.update_zabbix_host(owner_hostname="AWS", hostname="i-aaaaaaaa", node=node, host=host))
         host = self.connector.zabbix_api.host.get({"filter": {"host": "i-aaaaaaaa"}})[0]
-        self.assertEqual(len(host["interfaces"]), len(node.private_ips)*2+2)
+        self.assertEqual(len(host["interfaces"]), len(node.private_ips) * 2 + 2)
         self.connector.zabbix_api.host.update = Mock(side_effect=ZabbixAPIException())
         self.assertFalse(self.connector.update_zabbix_host(owner_hostname="AWS", hostname="i-aaaaaaaa", node=node, host=host))
 

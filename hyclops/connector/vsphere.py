@@ -1,26 +1,23 @@
 # HyClops for Zabbix
 # Copyright 2013 TIS Inc.
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-import os
-import sys
 import logging
 import traceback
 import hashlib
-from libcloud.compute.types import Provider
 from libcloud.compute.providers import set_driver, get_driver
 from hyclops.connector.base import BaseConnector
 from zabbix_api import ZabbixAPIException
@@ -45,7 +42,7 @@ class VSphereConnector(BaseConnector):
                 self.logger.debug("success. thread finished.")
             else:
                 self.logger.warning("failed. thread finished.")
-        except Exception, e:
+        except Exception:
             if traceback:
                 self.logger.error(traceback.format_exc())
 
@@ -159,12 +156,10 @@ class VSphereConnector(BaseConnector):
         zbx_new_host_uuids = []
         for node in nodes:
             hostname = node.id
-            visible_name = owner_hostname + "_" + node.name
             duplicate_hash = hashlib.sha1(hardware["id"] + node.extra["vmpath"]).hexdigest()
             host = None
             hosts = [host for host in zbx_hosts if host["host"] == hostname]
             duplicate_hosts = [host for host in zbx_hosts if host["host"] == duplicate_hash]
-            same_uuid_nodes = [n for n in nodes if n.id == node.id]
             if len(duplicate_hosts) > 0:
                 if len(hosts) > 0:
                     # update duplicate host
@@ -215,9 +210,9 @@ class VSphereConnector(BaseConnector):
             self.zabbix_sender(hostname, "instance.platform", node.extra["platform"])
 
         # move to "Not exist hosts" group old zabbix hosts
-        not_existed_groupid = self.zabbix_api.hostgroup.get({"filter":{"name":"Not exist hosts"}})[0]
+        not_existed_groupid = self.zabbix_api.hostgroup.get({"filter": {"name": "Not exist hosts"}})[0]
         for hostid in zbx_unchecked_hostids:
-            target_host = self.zabbix_api.host.get({"output":["host","name"],"hostids":[hostid]})[0]
+            target_host = self.zabbix_api.host.get({"output": ["host", "name"], "hostids": [hostid]})[0]
             self.logger.debug("Move to 'Not exist hosts' group %s" % hostid)
             self.zabbix_api.host.update({
                 "hostid": hostid,

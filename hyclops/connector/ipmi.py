@@ -1,23 +1,21 @@
 # HyClops for Zabbix
 # Copyright 2013 TIS Inc.
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
 # as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
-import os
-import sys
 import logging
 import subprocess
 import traceback
@@ -40,7 +38,7 @@ class IPMIConnector(BaseConnector):
                 self.logger.debug("success. thread finished.")
             else:
                 self.logger.warning("failed. thread finished.")
-        except Exception, e:
+        except Exception:
             self.logger.error(traceback.format_exc())
 
     def run_command(self, hostname, params):
@@ -79,10 +77,10 @@ class IPMIConnector(BaseConnector):
     def run_ipmitool(self, command, ipmi_ip, key, secret):
         cmd = [self.ipmitool, "-H", ipmi_ip, "-U", key, "-P", secret, "chassis", "power", command]
         try:
-            output,error = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+            output, error = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
             output = output.strip()
             return output
-        except subprocess.CalledProcessError, e:
+        except subprocess.CalledProcessError:
             self.logger.error("Failed to %s target server" % command)
             return None
 
