@@ -228,7 +228,10 @@ class EC2Connector(BaseConnector):
         try:
             if node.state == NodeState.RUNNING:
                 for type in [1, 2]:
-                    old_interfaces = [interface for interface in host["interfaces"].values() if int(interface["type"]) == type]
+                    interfaces = host["interfaces"]
+                    if isinstance(interfaces, dict):
+                        interfaces = interfaces.values()
+                    old_interfaces = [interface for interface in interfaces if int(interface["type"]) == type]
                     old_interfaces = sorted(old_interfaces, key=lambda x: x["interfaceid"])
                     is_main = False if old_interfaces else True
                     for new_addr, old_interface in map(None, [node.extra["dns_name"]] + node.private_ips, old_interfaces):

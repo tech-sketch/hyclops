@@ -133,7 +133,9 @@ class BaseConnector(object):
             "selectInterfaces": "extend",
         })
         if hosts:
-            interfaces = hosts[0]["interfaces"].values()
+            interfaces = hosts[0]["interfaces"]
+            if isinstance(interfaces, dict):
+                interfaces = interfaces.values()
             if interface_type:
                 interfaces = [interface for interface in interfaces if int(interface["type"]) == interface_type]
             if main:
@@ -152,7 +154,12 @@ class BaseConnector(object):
                 if "macros" in hosts[0]:
                     # host macro format on Zabbix 2.0:
                     #   {'1': {'macro': '{$MACRO_NAME}', 'hostmacroid': '1', 'hostid': '10001', 'value': 'Macro value'}}
-                    macros = [macro for macro in hosts[0]["macros"].values() if macro["macro"] == key]
+                    # host macro format on Zabbix 2.2
+                    #   [{'macro': '{$MACRO_NAME}', 'hostmacroid': '1', 'hostid': '10001', 'hosts': [{'hostid': '10001'}], 'value': 'Macro value'} 
+                    macros = hosts[0]["macros"]
+                    if isinstance(macros, dict):
+                       macros = macros.values() 
+                    macros = [macro for macro in macros if macro["macro"] == key]
                     if macros:
                         return macros[0]["value"]
                 # search template macro
