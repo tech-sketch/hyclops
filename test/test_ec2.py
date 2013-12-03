@@ -207,6 +207,10 @@ class TestEC2Connector(unittest.TestCase):
             "macro": "{$GLOBAL}",
             "value": "global macro",
         })
+        # create "Not exist hosts" Hostgroup
+        zabbix_api.hostgroup.create({
+            "name": "Not exist hosts"
+        })
 
     def test_init(self):
         self.assertIsInstance(self.connector, EC2Connector)
