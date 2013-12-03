@@ -133,8 +133,8 @@ class TestIPMIConnector(unittest.TestCase):
             self.assertFalse(self.connector.run_command(**message))
 
     def test_run_ipmi_tool(self):
-        with patch('subprocess.check_output') as m:
-            m.return_value = "output"
+        with patch('subprocess.Popen.communicate') as m:
+            m.return_value = ("output", "error")
             result = self.connector.run_ipmitool(command="start", ipmi_ip="127.0.0.1", key="username", secret="password")
             self.assertEqual(result, "output")
             m.side_effect = subprocess.CalledProcessError(returncode=1, cmd="ipmitool")
