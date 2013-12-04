@@ -213,11 +213,13 @@ class VSphereConnector(BaseConnector):
         not_existed_groupid = self.zabbix_api.hostgroup.get({"filter": {"name": "Not exist hosts"}})[0]
         for hostid in zbx_unchecked_hostids:
             target_host = self.zabbix_api.host.get({"output": ["host", "name"], "hostids": [hostid]})[0]
+            # for the case of zabbix visible name is empty.
+            target_visible_name = self.NOT_EXIST_HOST_NAME_PREFIX + target_host["name"] if "name" in target_host else ""
             self.logger.debug("Move to 'Not exist hosts' group %s" % hostid)
             self.zabbix_api.host.update({
                 "hostid": hostid,
                 "host": self.NOT_EXIST_HOST_NAME_PREFIX + target_host["host"],
-                "name": self.NOT_EXIST_HOST_NAME_PREFIX + target_host["name"],
+                "name": self.adjust_string_length(target_visible_name, "", self.VISIBLE_NAME_MAX_LENGTH),
                 "groups": [not_existed_groupid],
                 "status": 1,
                 "inventory": {
@@ -227,7 +229,7 @@ class VSphereConnector(BaseConnector):
         return True
 
     def create_zabbix_host(self, owner_hostname, hostname, node):
-        visible_name = owner_hostname + "_" + node.name
+        visible_name = self.adjust_string_length(owner_hostname, node.name, self.VISIBLE_NAME_MAX_LENGTH)
         same_visible_name_hosts = self.zabbix_api.host.get({"filter": {"name": visible_name}})
         if len(same_visible_name_hosts) > 0:
             # delete old host
@@ -269,7 +271,7 @@ class VSphereConnector(BaseConnector):
         return True
 
     def update_zabbix_host(self, owner_hostname, hostname, node, host):
-        visible_name = owner_hostname + "_" + node.name
+        visible_name = self.adjust_string_length(owner_hostname, node.name, self.VISIBLE_NAME_MAX_LENGTH)
         if node.public_ips and [interface for interface in host["interfaces"].values() if interface["dns"] == "dummy-interface.invalid"]:
             for type in [1, 2]:
                 old_interfaces = [interface for interface in host["interfaces"].values() if int(interface["type"]) == type]

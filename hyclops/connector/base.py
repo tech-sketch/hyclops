@@ -33,6 +33,7 @@ class BaseConnector(object):
     MACRO_TEMPLATES_LINUX = "{$VM_TEMPLATES_LINUX}"
     MACRO_TEMPLATES_WINDOWS = "{$VM_TEMPLATES_WINDOWS}"
     NOT_EXIST_HOST_NAME_PREFIX = "_DELETED_"
+    VISIBLE_NAME_MAX_LENGTH = 64
 
     def __init__(self, config):
         self.config = config
@@ -228,3 +229,17 @@ class BaseConnector(object):
         for tmpl in host['parentTemplates']:
             templates.append({"templateid": tmpl["templateid"]})
         return templates
+
+    def adjust_string_length(self, base_string, suffix, max_length):
+        if len(suffix) == 0 or len(base_string) > max_length:
+            if len(base_string) > max_length:
+                return base_string[0:max_length - len("..")] + ".."
+            else:
+                return base_string
+        else:
+            if len(base_string) + len(suffix) > max_length:
+                if max_length < len(suffix):
+                    return ".." + suffix[len(suffix) - max_length + len(".."):]
+                return base_string[0:max_length - len(".._" + suffix)] + ".._" + suffix
+            else:
+                return base_string + "_" + suffix

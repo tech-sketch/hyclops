@@ -154,11 +154,13 @@ class EC2Connector(BaseConnector):
         not_existed_groupid = self.zabbix_api.hostgroup.get({"filter": {"name": "Not exist hosts"}})[0]
         for hostid in zbx_unchecked_hostids:
             target_host = self.zabbix_api.host.get({"output": ["host", "name"], "hostids": [hostid]})[0]
+            # for the case of zabbix visible name is empty.
+            target_visible_name = self.NOT_EXIST_HOST_NAME_PREFIX + target_host["name"] if "name" in target_host else "" 
             self.logger.debug("Move to 'Not exist hosts' group %s" % hostid)
             self.zabbix_api.host.update({
                 "hostid": hostid,
                 "host": self.NOT_EXIST_HOST_NAME_PREFIX + target_host["host"],
-                "name": self.NOT_EXIST_HOST_NAME_PREFIX + target_host["name"],
+                "name": self.adjust_string_length(target_visible_name, "", self.VISIBLE_NAME_MAX_LENGTH),
                 "groups": [not_existed_groupid],
                 "status": 1,
                 "inventory": {
@@ -177,11 +179,8 @@ class EC2Connector(BaseConnector):
             node.extra["ami_name"] = "unknown"
 
     def create_zabbix_host(self, owner_hostname, hostname, node):
-        visible_name = owner_hostname + "_" + node.name
-        if len(visible_name) < (64 - len("_" + node.id)):
-            visible_name += "_" + node.id
-        else:
-            visible_name = visible_name[0:64 - len(".._" + node.id)] + ".._" + node.id
+        base_string = owner_hostname + "_" + node.name
+        visible_name = self.adjust_string_length(base_string, node.id, self.VISIBLE_NAME_MAX_LENGTH)
         templateids = self.get_template_ids(owner_hostname)
         # create host
         response = None
@@ -220,11 +219,8 @@ class EC2Connector(BaseConnector):
 
     def update_zabbix_host(self, owner_hostname, hostname, node, host):
         region = node.extra["availability"][:-1]
-        visible_name = owner_hostname + "_" + node.name
-        if len(visible_name) < (64 - len("_" + node.id)):
-            visible_name += "_" + node.id
-        else:
-            visible_name = visible_name[0:64 - len(".._" + node.id)] + ".._" + node.id
+        base_string = owner_hostname + "_" + node.name
+        visible_name = self.adjust_string_length(base_string, node.id, self.VISIBLE_NAME_MAX_LENGTH)
         try:
             if node.state == NodeState.RUNNING:
                 for type in [1, 2]:

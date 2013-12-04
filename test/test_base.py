@@ -336,7 +336,24 @@ class TestBaseConnector(unittest.TestCase):
         for data in test_data:
             result = self.connector.get_user_template_ids(**data["params"])
             self.assertListEqual(result, data["expect"])
-
+    def test_adjust_string_length(self):
+        test_data = [
+                {"params": {"base_string": "1234567890", "suffix": "i-123456", "max_length": 64},
+                 "expect": "1234567890_i-123456"},
+                {"params": {"base_string": "1234567890", "suffix": "i-123456", "max_length": 15},
+                 "expect": "1234.._i-123456"},
+                {"params": {"base_string": "1234567890", "suffix": "", "max_length": 64},
+                 "expect": "1234567890"},
+                {"params": {"base_string": "1234567890", "suffix": "", "max_length": 9},
+                 "expect": "1234567.."},
+                {"params": {"base_string": "1234567890", "suffix": "i-1234567890", "max_length": 10},
+                 "expect": "..34567890"},
+                {"params": {"base_string": "1234567890123", "suffix": "i-1234567890", "max_length": 10},
+                 "expect": "12345678.."}
+        ]
+        for data in test_data:
+            result = self.connector.adjust_string_length(data["params"]["base_string"], data["params"]["suffix"], data["params"]["max_length"])
+            self.assertEqual(result, data["expect"])
 
 if __name__ == '__main__':
     unittest.main()
