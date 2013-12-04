@@ -231,7 +231,7 @@ class BaseConnector(object):
         return templates
 
     def adjust_string_length(self, base_string, suffix, max_length):
-        if len(suffix) == 0 or len(base_string) > max_length:
+        if len(suffix) == 0:
             if len(base_string) > max_length:
                 return base_string[0:max_length - len("..")] + ".."
             else:
