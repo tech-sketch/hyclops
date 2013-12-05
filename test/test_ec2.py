@@ -115,6 +115,7 @@ class TestEC2Connector(unittest.TestCase):
         })
         MockEC2NodeDriver.add_mock_node(node)
         MockEC2NodeDriver.add_mock_image(NodeImage(id="ami-aaaaaaaa", name="Linux Image", driver=self.driver, extra={"platform": None}))
+        MockEC2NodeDriver.add_mock_image(NodeImage(id="ami-bbbbbbbb", name="Windows Image", driver=self.driver, extra={"platform": "windows"}))
 
     def _set_zabbix_mock(self):
         zabbix_api = self.connector.zabbix_api
@@ -298,14 +299,15 @@ class TestEC2Connector(unittest.TestCase):
         self.connector.zabbix_api.host.update = Mock(side_effect=ZabbixAPIException())
         self.assertFalse(self.connector.update_zabbix_host(owner_hostname="AWS", hostname="i-aaaaaaaa", node=node, host=host))
 
-    def test_set_platform(self):
+    def test_set_ami_info(self):
         node = self.driver.list_nodes(ex_node_ids=["i-aaaaaaaa"])[0]
         image = self.driver.list_images(ex_image_ids=node.extra["imageId"])[0]
-        self.connector.set_platform(node, {"key": "key", "secret": "secret"})
-        self.assertEqual(node.extra["platform"], image.extra["platform"])
-        node = self.driver.list_nodes(ex_node_ids=["i-bbbbbbbb"])[0]
-        self.connector.set_platform(node, {"key": "key", "secret": "secret"})
+        self.connector.set_ami_info(node)
         self.assertEqual(node.extra["platform"], "unknown")
+        node = self.driver.list_nodes(ex_node_ids=["i-bbbbbbbb"])[0]
+        image = self.driver.list_images(ex_image_ids=node.extra["imageId"])[0]
+        self.connector.set_ami_info(node)
+        self.assertEqual(node.extra["platform"], image.extra["platform"])
 
 
 if __name__ == '__main__':
