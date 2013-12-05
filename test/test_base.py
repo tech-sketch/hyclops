@@ -203,10 +203,10 @@ class TestBaseConnector(unittest.TestCase):
                         {"type": 2, "useip": 1, "ip": "127.0.0.1", "dns": "", "port": 161, "main": 1}]},
             # two addresses
             {"params": {"addresses": ["127.0.0.1", "localhost.localdomain"]},
-             "expect": [{"type": 1, "useip": 1, "ip": "127.0.0.1", "dns": "", "port": 10050, "main": 1},
-                        {"type": 2, "useip": 1, "ip": "127.0.0.1", "dns": "", "port": 161, "main": 1},
-                        {"type": 1, "useip": 0, "ip": "", "dns": "localhost.localdomain", "port": 10050, "main": 0},
-                        {"type": 2, "useip": 0, "ip": "", "dns": "localhost.localdomain", "port": 161, "main": 0}]},
+             "expect": [{"type": 1, "useip": 1, "ip": "127.0.0.1", "dns": "", "port": 10050, "main": 0},
+                        {"type": 2, "useip": 1, "ip": "127.0.0.1", "dns": "", "port": 161, "main": 0},
+                        {"type": 1, "useip": 0, "ip": "", "dns": "localhost.localdomain", "port": 10050, "main": 1},
+                        {"type": 2, "useip": 0, "ip": "", "dns": "localhost.localdomain", "port": 161, "main": 1}]},
             # one address with interface_types
             {"params": {"addresses": ["127.0.0.1"], "interface_types": [1]},
              "expect": [{"type": 1, "useip": 1, "ip": "127.0.0.1", "dns": "", "port": 10050, "main": 1}]},
