@@ -308,7 +308,7 @@ class VSphereConnector(BaseConnector):
                 "name": visible_name,
                 "templates": assigned_template_ids + unassigned_template_ids,
                 "inventory": {
-                    "name": node.name,
+                    "name": self.adjust_string_length(node.name, "", self.VISIBLE_NAME_MAX_LENGTH),
                     "type": self.type,
                     "tag": owner_hostname,
                     "location": node.extra["vmpath"],

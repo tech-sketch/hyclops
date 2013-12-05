@@ -121,7 +121,7 @@ class EC2Connector(BaseConnector):
         zbx_unchecked_hostids = [host["hostid"] for host in zbx_same_owner_hosts]
 
         for node in nodes:
-            self.set_ami_info(node, conn_params)
+            self.set_ami_info(node)
             hostname = node.id
             exist_hosts = [host for host in zbx_hosts if host["host"] == hostname]
             if not exist_hosts:
@@ -169,7 +169,7 @@ class EC2Connector(BaseConnector):
             })
         return True
 
-    def set_ami_info(self, node, conn_params):
+    def set_ami_info(self, node):
         images = node.driver.list_images(ex_image_ids=[node.extra["imageId"]])
         if images:
             node.extra["platform"] = images[0].extra["platform"] if images[0].extra["platform"] else "unknown"
@@ -193,7 +193,7 @@ class EC2Connector(BaseConnector):
                 "templates": templateids,
                 "inventory_mode": 1,
                 "inventory": {
-                    "name": node.name,
+                    "name": self.adjust_string_length(node.name, "", self.VISIBLE_NAME_MAX_LENGTH),
                     "type": self.type,
                     "tag": owner_hostname,
                     "location": node.extra["availability"][:-1],  # region
