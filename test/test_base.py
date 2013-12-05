@@ -347,9 +347,7 @@ class TestBaseConnector(unittest.TestCase):
                 {"params": {"base_string": "1234567890", "suffix": "", "max_length": 9},
                  "expect": "1234567.."},
                 {"params": {"base_string": "1234567890", "suffix": "i-1234567890", "max_length": 10},
-                 "expect": "..34567890"},
-                {"params": {"base_string": "1234567890123", "suffix": "i-1234567890", "max_length": 10},
-                 "expect": "12345678.."}
+                 "expect": "..34567890"}
         ]
         for data in test_data:
             result = self.connector.adjust_string_length(data["params"]["base_string"], data["params"]["suffix"], data["params"]["max_length"])
