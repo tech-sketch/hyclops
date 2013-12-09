@@ -156,10 +156,10 @@ class BaseConnector(object):
                     # host macro format on Zabbix 2.0:
                     #   {'1': {'macro': '{$MACRO_NAME}', 'hostmacroid': '1', 'hostid': '10001', 'value': 'Macro value'}}
                     # host macro format on Zabbix 2.2
-                    #   [{'macro': '{$MACRO_NAME}', 'hostmacroid': '1', 'hostid': '10001', 'hosts': [{'hostid': '10001'}], 'value': 'Macro value'} 
+                    #   [{'macro': '{$MACRO_NAME}', 'hostmacroid': '1', 'hostid': '10001', 'hosts': [{'hostid': '10001'}], 'value': 'Macro value'}
                     macros = hosts[0]["macros"]
                     if isinstance(macros, dict):
-                       macros = macros.values() 
+                        macros = macros.values()
                     macros = [macro for macro in macros if macro["macro"] == key]
                     if macros:
                         return macros[0]["value"]

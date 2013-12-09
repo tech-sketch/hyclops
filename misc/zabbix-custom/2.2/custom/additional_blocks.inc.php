@@ -247,9 +247,9 @@ function make_awsstat_summary($preloading = false){
 
 				// AWS Charges
 				$item = get_item_by_key('get_aws_charges.py[{$KEY},{$SECRET}]', $host["host"]);
-                if(array_key_exists('lastvalue', $item)){
+				if(array_key_exists('lastvalue', $item)){
 					$r->addItem(new CLink($item["lastvalue"], "history.php?action=showgraph&itemid={$item["itemid"]}"));
-                }else{
+				}else{
 					$r->addItem(new CCol(_('No data')));
 				}
 				$table->addRow($r);

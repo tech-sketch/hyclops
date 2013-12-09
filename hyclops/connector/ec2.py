@@ -155,7 +155,7 @@ class EC2Connector(BaseConnector):
         for hostid in zbx_unchecked_hostids:
             target_host = self.zabbix_api.host.get({"output": ["host", "name"], "hostids": [hostid]})[0]
             # for the case of zabbix visible name is empty.
-            target_visible_name = self.NOT_EXIST_HOST_NAME_PREFIX + target_host["name"] if "name" in target_host else "" 
+            target_visible_name = self.NOT_EXIST_HOST_NAME_PREFIX + target_host["name"] if "name" in target_host else ""
             self.logger.debug("Move to 'Not exist hosts' group %s" % hostid)
             self.zabbix_api.host.update({
                 "hostid": hostid,

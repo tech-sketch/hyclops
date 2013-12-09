@@ -26,7 +26,7 @@
 		var hostnames = [];
 		var checked = jQuery('#'+form_id+' [name="'+checkbox_name+'"]:checked');
 		checked.map(function() {
-                	hostids.push(jQuery(this).val());
+			hostids.push(jQuery(this).val());
 			hostnames.push(jQuery(this).parents("tr").children("td").children("span").text());
 		});
 		hostids = JSON.stringify(hostids);
@@ -40,7 +40,7 @@
 		};
 
 		confirmation = confirmation + " [" + scriptname + "]? :" + hostnames;
-        
+
 		if (confirmation == '') {
 			execute();
 		}
@@ -93,7 +93,7 @@
 				jQuery('.ui-dialog-buttonset button:first').addClass('main');
 				jQuery('.ui-dialog').css('z-index',1000);
 			}
-        }
+		}
 	}
 
 	function checkAllHosts(form_name, chkMain, shkName){
@@ -168,7 +168,6 @@
 				jQuery('.ui-dialog-buttonset button:first').addClass('main');
 				jQuery('.ui-dialog').css('z-index',1000);
 			}
-        }
-		
+		}
 	}
 </script>

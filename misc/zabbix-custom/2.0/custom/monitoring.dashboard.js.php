@@ -27,7 +27,7 @@ require_once dirname(__FILE__).'/../include/views/js/general.script.confirm.js.p
 		var hostnames = [];
 		var checked = jQuery('#'+form_id+' [name="'+checkbox_name+'"]:checked');
 		checked.map(function() {
-                	hostids.push(jQuery(this).val());
+			hostids.push(jQuery(this).val());
 			hostnames.push(jQuery(this).parents("tr").children("td").children("span").text());
 		});
 		hostids = JSON.stringify(hostids);
