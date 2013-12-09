@@ -275,8 +275,6 @@ function make_hint_row($type, $instance){
 	}
 	$hostScripts = API::Script()->getScriptsByHosts(zbx_objectValues(array($instance['host']), 'hostid'));
 	$hostSpan = new CSpan(nbsp($instance['name']), 'link_menu menu-host');
-	//$hostSpan->setAttribute('data-menu', hostMenuData($instance['host'], $hostScripts[$instance['hostid']]));
-	//$hostSpan->setAttribute('data-menu', getMenuPopupHost($instance['host'], $hostScripts[$instance['hostid']]));
 	$hostSpan->setMenuPopup(getMenuPopupHost($instance['host'], $hostScripts[$instance['hostid']]));
 	$r->addItem($hostSpan);
 	$r->addItem(new CCol($state, get_item_level($state)));
