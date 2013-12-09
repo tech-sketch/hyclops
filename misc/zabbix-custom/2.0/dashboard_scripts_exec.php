@@ -81,7 +81,7 @@ if (isset($_REQUEST['execute'])) {
 }elseif (isset($_REQUEST['answer'])) {
 	$hostname = get_request('hostname');
 	$choiceid = get_request('choiceid');
-	$script = 'python /opt/hyclops/globalscripts/request_action.py vsphere '.$hostname.' \'{"command": "answer", "choiceid":"'.$choiceid.'"}\' 2>&1';
+	$script = '/opt/hyclops/globalscripts/request_action.py vsphere '.$hostname.' \'{"command": "answer", "choiceid":"'.$choiceid.'"}\' 2>&1';
 	$result = array();
 	$ret = null;
 	exec($script, $result, $ret);
