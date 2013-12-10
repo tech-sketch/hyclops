@@ -227,6 +227,7 @@ function make_vm_table($type, $instances){
 			_('Status'),
 			_('CPU threads'),
 			_('Memory(GB)'),
+			_('Interface'),
 			_('SSH Connect'),
 		));
 		break;
@@ -239,6 +240,7 @@ function make_vm_table($type, $instances){
 			_('Status'),
 			_('CPU threads'),
 			_('Memory(GB)'),
+			_('Interface'),
 		));
 		break;
 	case 'other':
@@ -248,6 +250,7 @@ function make_vm_table($type, $instances){
 			_('Status'),
 			_('CPU thread'),
 			_('Memory(GB)'),
+			_('Interface'),
 			_('Question'),
 		));
 		break;
@@ -280,6 +283,7 @@ function make_hint_row($type, $instance){
 	$r->addItem(new CCol($state, get_item_level($state)));
 	$r->addItem($instance['cpu']);
 	$r->addItem($instance['memory']);
+	$r->addItem($instance['main_interface']);
 	if($type == "other" && $instance["stuck_state"] == 1){
 		$question = $instance['stuck_question'];
 		$json = new CJSON();

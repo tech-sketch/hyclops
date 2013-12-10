@@ -204,6 +204,7 @@ function get_instances($owner_hostid, $sortfield = "name", $sortorder = "ASC"){
 				"stuck_state" => intval(get_item_value($host["hostid"], "instance.stuck.state")),
 				"stuck_question" => get_item_value($host["hostid"], "instance.stuck.question"),
 				"stuck_choices" => get_item_value($host["hostid"], "instance.stuck.choices"),
+				"main_interface" => get_main_address($host["hostid"], INTERFACE_TYPE_AGENT), 
 			);
 			if(!empty($instance["memory"]) && (int)$instance["memory"] != 0) $instance["memory"] = $instance["memory"]/pow(1024,3);
 			array_push($instances, $instance);
