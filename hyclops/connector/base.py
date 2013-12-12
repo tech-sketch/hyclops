@@ -214,7 +214,7 @@ class BaseConnector(object):
 
     def get_user_template_ids(self, owner_hostname, node):
         templates = self.get_template_ids(owner_hostname, self.MACRO_TEMPLATES)
-        if "platform" not in node.extra or node.extra["platform"] == "unknown":
+        if "platform" not in node.extra:
             self.logger.warning("Unknown platform: %s" % node.id)
             return templates
         else:
