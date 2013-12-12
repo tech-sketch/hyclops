@@ -209,8 +209,8 @@ class ImportCommand(Command):
 # setup
 pwd = os.path.abspath(os.path.dirname(__file__))
 setup(name='hyclops',
-      version='0.1.0',
-      description='Description message',
+      version='0.2.0',
+      description='Hybrid cloud operations plugin for Zabbix',
       author='TIS Inc.',
       author_email='hyclops@ml.tis.co.jp',
       url='http://tech-sketch.github.io/hyclops',
