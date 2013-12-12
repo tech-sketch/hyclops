@@ -21,6 +21,10 @@ HyClops provides following features:
 
 # Release Notes {#releases}
 
+- 2013/12/12 ver.0.2.0
+  - Support Zabbix2.2.
+  - Change the logic of automatic allocation Templates for unknown platform hosts.
+  - Add a interface column to vSphere information panel in Zabbix dashboard.
 - 2013/07/12 ver.0.1.0
   - Support Amazon EC2 & VMware vSphere ESXi management.
   - Register instances info automatically.

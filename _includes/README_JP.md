@@ -22,6 +22,13 @@ HyClopsの機能概要:
 # リリースノート {#releases}
 
 <ul>
+  <li> 2013/12/12 ver.0.2.0
+    <ul>
+      <li> Zabbix 2.2への対応を実施</li>
+      <li> プラットフォームが取得できない(unknown)EC2インスタンスへのテンプレート割り当てロジック変更</li>
+      <li> ダッシュボードのvSphere情報表示パネルにインタフェース表示カラムを追加</li>
+    </ul>
+  </li>
   <li> 2013/07/12 ver.0.1.0
     <ul>
       <li> Amazon EC2およびVMware vSphere ESXi管理への対応</li>
