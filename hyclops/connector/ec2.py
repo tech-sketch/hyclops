@@ -97,6 +97,8 @@ class EC2Connector(BaseConnector):
         if host is None or not host["inventory"]:
             return None
         region = host["inventory"]["location"]
+        if region not in self.PROVIDERS:
+            return None
         provider = self.PROVIDERS[region]
         driver = get_driver(provider)
         conn = driver(**conn_params)
