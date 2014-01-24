@@ -107,7 +107,7 @@ Ubuntuの場合
 
 ## Pythonモジュールのインストール
 
-    $ sudo pip install apache-libcloud zabbix-api pyzmq psphere python-daemon==1.6 configobj
+    $ sudo pip install apache-libcloud==0.13.2 zabbix-api pyzmq psphere python-daemon==1.6 configobj
     Pythonのバージョンが2.7未満の場合ordereddictおよびargparseもインストール
     $ sudo pip install ordereddict argparse
     AWSの課金情報監視を実施したい場合botoもインストール

@@ -88,7 +88,7 @@ In case of Ubuntu
 
 ## Install python module
 
-    $ sudo pip install apache-libcloud zabbix-api pyzmq psphere python-daemon==1.6 configobj
+    $ sudo pip install apache-libcloud==0.13.2 zabbix-api pyzmq psphere python-daemon==1.6 configobj
     If python version < 2.7
     $ sudo pip install ordereddict argparse
     If you want to use the script collecting AWS billing data 
