@@ -21,6 +21,8 @@ HyClops provides following features:
 
 # Release Notes {#releases}
 
+- 2014/03/17 ver.0.2.1
+  - Bug fix (minor release)
 - 2013/12/12 ver.0.2.0
   - Support Zabbix2.2.
   - Change the logic of automatic allocation Templates for unknown hosts.
