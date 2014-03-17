@@ -272,12 +272,11 @@ class VSphereConnector(BaseConnector):
 
     def update_zabbix_host(self, owner_hostname, hostname, node, host):
         visible_name = self.adjust_string_length(owner_hostname, node.name, self.VISIBLE_NAME_MAX_LENGTH)
-        #if node.public_ips and [interface for interface in host["interfaces"].values() if interface["dns"] == "dummy-interface.invalid"]:
-        if node.public_ips and [interface for interface in host["interfaces"] if interface["dns"] == "dummy-interface.invalid"]:
+        interfaces = host["interfaces"]
+        if isinstance(interfaces, dict):
+            interfaces = interfaces.values()
+        if node.public_ips and [interface for interface in interfaces if interface["dns"] == "dummy-interface.invalid"]:
             for type in [1, 2]:
-                interfaces = host["interfaces"]
-                if isinstance(interfaces, dict):
-                    interfaces = interfaces.values()
                 old_interfaces = [interface for interface in interfaces if int(interface["type"]) == type]
                 old_interfaces = sorted(old_interfaces, key=lambda x: x["interfaceid"])
                 is_main = False if old_interfaces else True
