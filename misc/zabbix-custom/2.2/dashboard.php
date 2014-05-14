@@ -171,9 +171,9 @@ if (isset($_REQUEST['favobj'])) {
 					break;
 				case 'hat_vsphere':
 					$vspherestat = make_vspherestat_summary();
-				//	if(!empty($vspherestat)){
+					if(!empty($vspherestat)){
 						$vspherestat->show();
-				//	}
+					}
 					break;
 				case 'hat_aws':
 					$awsstat = make_awsstat_summary();
