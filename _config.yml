@@ -27,6 +27,7 @@ tagline: Hybrid Cloud Ops Extension for Zabbix
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
 production_url : http://tech-sketch.github.io/hyclops
+development_url : http://development-hostname:4000
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #

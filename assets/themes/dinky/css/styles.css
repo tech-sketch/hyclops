@@ -286,13 +286,13 @@ header li {
 	-webkit-box-shadow: inset 0px 1px 1px 0 rgba(233,2,38, 1);
 	box-shadow: inset 0px 1px 1px 0 rgba(233,2,38, 1);
 */	
-	background: #0e65dd;
-	background: -moz-linear-gradient(top, #0e65dd 0%, #1353aa 100%);
+	background: #28A7E1;
+	background: -moz-linear-gradient(top, #28A7E1 0%, #1353aa 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-  background: -webkit-linear-gradient(top, #0e65dd 0%,#1353aa 100%);
-  background: -o-linear-gradient(top, #0e65dd 0%,#1353aa 100%);
-  background: -ms-linear-gradient(top, #0e65dd 0%,#1353aa 100%);
-  background: linear-gradient(top, #0e65dd 0%,#1353aa 100%);
+  background: -webkit-linear-gradient(top, #28A7E1 0%,#1353aa 100%);
+  background: -o-linear-gradient(top, #28A7E1 0%,#1353aa 100%);
+  background: -ms-linear-gradient(top, #28A7E1 0%,#1353aa 100%);
+  background: linear-gradient(top, #28A7E1 0%,#1353aa 100%);
   
 	border-radius:4px;
   border:1px solid #0D0D0D;
@@ -312,13 +312,13 @@ header li:hover {
   background: -ms-linear-gradient(top, #C3001D 0%,#950119 100%);
   background: linear-gradient(top, #C3001D 0%,#950119 100%);
   */
-	background: #3084f8;
-	background: -moz-linear-gradient(top, #3084f8 0%, #195cb8 100%);
+	background: #4DB1DF;
+	background: -moz-linear-gradient(top, #4DB1DF 0%, #195cb8 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-  background: -webkit-linear-gradient(top, #3084f8 0%,#195cb8 100%);
-  background: -o-linear-gradient(top, #3084f8 0%,#195cb8 100%);
-  background: -ms-linear-gradient(top, #3084f8 0%,#195cb8 100%);
-  background: linear-gradient(top, #3084f8 0%,#195cb8 100%);
+  background: -webkit-linear-gradient(top, #4DB1DF 0%,#195cb8 100%);
+  background: -o-linear-gradient(top, #4DB1DF 0%,#195cb8 100%);
+  background: -ms-linear-gradient(top, #4DB1DF 0%,#195cb8 100%);
+  background: linear-gradient(top, #4DB1DF 0%,#195cb8 100%);
 }
 
 a.buttons {
@@ -454,13 +454,13 @@ ul.responsive_menu {
 }
 
 ul.responsive_menu li:hover {
-    background: #3084f8;
-    background: -moz-linear-gradient(top, #3084f8 0%, #195cb8 100%);
+    background: #4DB1DF;
+    background: -moz-linear-gradient(top, #4DB1DF 0%, #195cb8 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-    background: -webkit-linear-gradient(top, #3084f8 0%,#195cb8 100%);
-    background: -o-linear-gradient(top, #3084f8 0%,#195cb8 100%);
-    background: -ms-linear-gradient(top, #3084f8 0%,#195cb8 100%);
-    background: linear-gradient(top, #3084f8 0%,#195cb8 100%);
+    background: -webkit-linear-gradient(top, #4DB1DF 0%,#195cb8 100%);
+    background: -o-linear-gradient(top, #4DB1DF 0%,#195cb8 100%);
+    background: -ms-linear-gradient(top, #4DB1DF 0%,#195cb8 100%);
+    background: linear-gradient(top, #4DB1DF 0%,#195cb8 100%);
 }
 ul.responsive_menu li{
     list-style: none;
@@ -468,16 +468,16 @@ ul.responsive_menu li{
     /*background-color: #d7d7d7;
     color:#666;*/
     width: 100px;
-    background: #0e65dd;
-    background: -moz-linear-gradient(top, #0e65dd 0%, #1353aa 100%);
+    background: #28A7E1;
+    background: -moz-linear-gradient(top, #28A7E1 0%, #1353aa 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#dddddd));
-    background: -webkit-linear-gradient(top, #0e65dd 0%,#1353aa 100%);
-    background: -o-linear-gradient(top, #0e65dd 0%,#1353aa 100%);
-    background: -ms-linear-gradient(top, #0e65dd 0%,#1353aa 100%);
-    background: linear-gradient(top, #0e65dd 0%,#1353aa 100%);
+    background: -webkit-linear-gradient(top, #28A7E1 0%,#1353aa 100%);
+    background: -o-linear-gradient(top, #28A7E1 0%,#1353aa 100%);
+    background: -ms-linear-gradient(top, #28A7E1 0%,#1353aa 100%);
+    background: linear-gradient(top, #28A7E1 0%,#1353aa 100%);
   
     /*border:1px solid #0D0D0D;*/
-    border:1px solid #0e65dd;
+    border:1px solid #28A7E1;
     color: #FDFDFB;
 
     -webkit-box-shadow: inset 0px 1px 1px 0 rgba(14,123,225, 1);
@@ -558,7 +558,7 @@ footer.tis_footer span.partition {
 
 footer.tis_footer a {
     text-decoration: underline;
-    color: #3084f8;
+    color: #4DB1DF;
 }
 
 footer span.copyright {
