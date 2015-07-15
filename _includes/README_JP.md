@@ -165,7 +165,7 @@ Ubuntuの場合
 
     $ sudo cp -a ./misc/init.d/redhat/hyclops /etc/init.d/  # in case of SysV init
     $ sudo cp -a ./misc/init.d/ubuntu/hyclops.conf /etc/init/   # in case of Upstart
-    $ sudo cp -a ./externalscripts/* [externalscripts dir] (/etc/zabbix/externalscripts/ etc...)
+    $ sudo cp -a ./misc/externalscripts/* [externalscripts dir] (/etc/zabbix/externalscripts/ etc...)
 
 ### 権限設定
 
