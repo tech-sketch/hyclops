@@ -215,6 +215,7 @@ HyClopsプロセスから発するログはHyClops起動ユーザ(hyclops)が、
 
 SysV initを利用する環境の場合
 
+    $ sudo chkconfig --add hyclops
     $ sudo chkconfig hyclops on
     $ sudo service hyclops start
 
