@@ -176,6 +176,7 @@ So, Both of HyClops process user and Apache process user must be able to write t
 
 In case of SysV init
 
+    $ sudo chkconfig --add hyclops
     $ sudo chkconfig hyclops on
     $ sudo service hyclops start
 
