@@ -368,16 +368,6 @@ At Zabbix dashboard, you can select vSphere VM or Amazon EC2 instance(Powered on
 
 ![gateone](http://tech-sketch.github.io/hyclops/assets/images/gateone.png)
 
-# Contact {#contact}
-
-Please send feedback to us.
-
-[TIS Inc.](http://www.tis.co.jp)  
-Strategic Technology Center  
-HyClops for Zabbix team  
-<hyclops@ml.tis.co.jp>.
-
-
 # License {#license}
 
 HyClops for Zabbix is released under the GNU General Public License version2.  
