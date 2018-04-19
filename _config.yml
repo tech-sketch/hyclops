@@ -160,10 +160,6 @@ navbar_list :
     name_jp: FAQ
     link: /faq.html
     link_jp: /jp/faq.html
-  - name: Contact
-    name_jp: 問い合わせ先
-    link: /index.html#contact
-    link_jp: /jp/index.html#contact
   - name: License
     name_jp: ライセンス
     link: /index.html#license

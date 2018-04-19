@@ -383,16 +383,6 @@ ZabbixダッシュボードからvSphere VMまたはAmazon EC2インスタンス
 
 ![gateone]({{ site.production_url }}/assets/images/gateone.png)
 
-# 問い合わせ先 {#contact}
-
-フィードバックや不明点等以下までお問い合わせ下さい。
-
-[TIS株式会社](http://www.tis.co.jp)  
-コーポレート本部　戦略技術センター  
-HyClops for Zabbix 担当宛  
-<hyclops@ml.tis.co.jp>
-
-
 # ライセンス {#license}
 
 HyClops for ZabbixはGNU General Public License version2のもとにリリースされています。  
