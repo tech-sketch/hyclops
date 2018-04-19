@@ -92,6 +92,28 @@ ZabbixのインストールについてはZabbix公式マニュアルを参照�
 
 Zabbix AgentはHyClopsおよびGateOneのプロセス稼働監視のために利用します。
 
+##事前準備
+
+Zabbix管理画面の"管理 > 一般 > 値のマッピング"から以下の2つの設定を行います。
+
+**Script return code**
+
+|受信データ|マッピング文字列|
+|---------|----------------|
+|0|success|
+|1|failure|
+
+**Libcloud Node State**
+
+|受信データ|マッピング文字列|
+|---------|----------------|
+|0|running|
+|1|rebooting|
+|2|terminated|
+|3|pending|
+|4|stopped|
+
+
 ## 関連パッケージのインストール
 
 RHEL/CentOSの場合
@@ -143,7 +165,7 @@ Ubuntuの場合
 
     $ sudo cp -a ./misc/init.d/redhat/hyclops /etc/init.d/  # in case of SysV init
     $ sudo cp -a ./misc/init.d/ubuntu/hyclops.conf /etc/init/   # in case of Upstart
-    $ sudo cp -a ./externalscripts/* [externalscripts dir] (/etc/zabbix/externalscripts/ etc...)
+    $ sudo cp -a ./misc/externalscripts/* [externalscripts dir] (/etc/zabbix/externalscripts/ etc...)
 
 ### 権限設定
 
@@ -193,6 +215,7 @@ HyClopsプロセスから発するログはHyClops起動ユーザ(hyclops)が、
 
 SysV initを利用する環境の場合
 
+    $ sudo chkconfig --add hyclops
     $ sudo chkconfig hyclops on
     $ sudo service hyclops start
 
@@ -232,27 +255,6 @@ HyClopsは、AWS上やvSphere ESXi上から存在しなくなった仮想マシ�
 # 設定 {#configure}
 
 Zabbix管理画面からHyClopsの利用に必要な設定を実施します。
-
-## 値のマッピング設定
-
-"管理 > 一般 > 値のマッピング"から以下の2つの設定を行います。
-
-**Script return code**
-
-|受信データ|マッピング文字列|
-|---------|----------------|
-|0|success|
-|1|failure|
-
-**Libcloud Node State**
-
-|受信データ|マッピング文字列|
-|---------|----------------|
-|0|running|
-|1|rebooting|
-|2|terminated|
-|3|pending|
-|4|stopped|
 
 ## グローバルマクロ設定
 

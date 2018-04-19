@@ -73,6 +73,28 @@ See the Zabbix official manual. <https://www.zabbix.com/documentation/2.0/manual
 
 Zabbix Agent is used for HyClops & GateOne process monitoring.
 
+## Create value mappings
+
+Configure in Zabbix frontend.
+Open "Administration > General > Value mapping"
+
+**Script return code**
+
+|raw data|mapping string|
+|---------|----------------|
+|0|success|
+|1|failure|
+
+**Libcloud Node State**
+
+|raw data|mapping string|
+|---------|----------------|
+|0|running|
+|1|rebooting|
+|2|terminated|
+|3|pending|
+|4|stopped|
+
 ## Install related package
 
 In case of RHEL/CentOS
@@ -123,7 +145,7 @@ In case of Ubuntu
 
     $ sudo cp -a ./misc/init.d/redhat/hyclops /etc/init.d/  # in case of SysV init
     $ sudo cp -a ./misc/init.d/ubuntu/hyclops.conf /etc/init/   # in case of Upstart
-    $ sudo cp -a ./externalscripts/* [externalscripts dir] (/etc/zabbix/externalscripts/ etc...)
+    $ sudo cp -a ./misc/externalscripts/* [externalscripts dir] (/etc/zabbix/externalscripts/ etc...)
 
 ### Setting permissions
 
@@ -176,6 +198,7 @@ So, Both of HyClops process user and Apache process user must be able to write t
 
 In case of SysV init
 
+    $ sudo chkconfig --add hyclops
     $ sudo chkconfig hyclops on
     $ sudo service hyclops start
 
@@ -214,27 +237,6 @@ If you want to change period, please set "-d" option (e.g. "-d 10" is setting to
 # Configure {#configure}
 
 Configure in Zabbix frontend.
-
-## Create value mappings
-
-Open "Administration > General > Value mapping"
-
-**Script return code**
-
-|raw data|mapping string|
-|---------|----------------|
-|0|success|
-|1|failure|
-
-**Libcloud Node State**
-
-|raw data|mapping string|
-|---------|----------------|
-|0|running|
-|1|rebooting|
-|2|terminated|
-|3|pending|
-|4|stopped|
 
 ## Setting global macros
 
